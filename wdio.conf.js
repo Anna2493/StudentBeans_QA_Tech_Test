@@ -89,7 +89,7 @@ exports.config = {
   },
 
   reporters: [
-    'spec'
+      'spec'
   ],
 
   // =====
