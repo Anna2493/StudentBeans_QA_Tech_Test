@@ -12,12 +12,30 @@ class SimpleSearchPageObject extends ParentPageObject {
     await this.isElementEqualToExpected($('h2=Student deals of the day'), 'Student deals of the day')
   }
 
-  async clickSearchButton () {
+  async clickSearchButton(){
     const searchButton = $('button[data-testid="nav-search-desktop"]')
     searchButton.click()
+       
+  }
+
+  async verifySearchModalDisplayed(){
     const searchModal = await $('div[data-testid="modal-overlay"]')
-    const isDisplayed = searchModal.isDisplayed();
-    await this.isElementDisplayed(isDisplayed)
+    await searchModal.waitForDisplayed()
+    const isDisplayed = await searchModal.isDisplayed()
+    await this.isElementDisplayed(isDisplayed) 
+  }
+
+  async enterSearchValue(searchValue){
+    const searchInput = await $('input[data-testid="search-input"]')
+    await searchInput.setValue(searchValue)
+  }
+
+  async selectSearchListing(order, expectedResult){
+    const results = await $(`div.css-7ew2lb:nth-child(${order})`).$('a').$('div:nth-child(2)').$('p:nth-child(1)')
+    await browser.waitUntil(async () => {
+      return (await results.getText())
+    })
+    await this.isElementEqualToExpected(results, expectedResult)
   }
 
 
