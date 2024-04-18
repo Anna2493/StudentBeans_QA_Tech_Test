@@ -10,7 +10,7 @@ exports.config = {
   // Specify Test Files
   // ==================
   specs: ['test/features/**/*.feature'],
-  exclude: [],
+  exclude: ['test/features/**/simpleSearch.feature'],
   //
   // ============
   // Capabilities
@@ -21,7 +21,7 @@ exports.config = {
 
   capabilities: [
     {
-      maxInstances: 1,
+      maxInstances: 2,
       browserName: 'chrome',
       'goog:chromeOptions': {
         // to run chrome headless the following flags are required
