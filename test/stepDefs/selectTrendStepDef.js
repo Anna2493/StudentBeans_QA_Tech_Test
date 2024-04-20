@@ -1,12 +1,17 @@
-const { Given, When, Then } = require('@cucumber/cucumber')
+const { When, Then } = require('@cucumber/cucumber')
 const SelectTrendPageObject = require('../pageObjects/selectTrendPageObject')
 
 const selectTrendPageObject = new SelectTrendPageObject()
 
-When('I click on {string} navigation link', async (navigation) => {
-    await selectTrendPageObject.clickNavigationButton(navigation)
+When('I click on "Trending Now" navigation link', async () => {
+    await selectTrendPageObject.clickNavigationButton()
+    await selectTrendPageObject.verifyTrendingPage()
   })
 
+When('I select the {int}th discount from the list', async(item) => {
+  await selectTrendPageObject.selectItemFromList(item)
+})
 
-//  When I select the 6th discount from the list
-//  Then I should see this discount details
+Then('I should see this discount details', async() =>{
+  await selectTrendPageObject.verifyDiscountAppears()
+})

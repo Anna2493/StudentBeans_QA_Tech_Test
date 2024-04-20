@@ -10,7 +10,7 @@ exports.config = {
   // Specify Test Files
   // ==================
   specs: ['test/features/**/*.feature'],
-  exclude: ['test/features/**/simpleSearch.feature'],
+  exclude: [],
   //
   // ============
   // Capabilities

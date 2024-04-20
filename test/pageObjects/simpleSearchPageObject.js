@@ -30,8 +30,8 @@ class SimpleSearchPageObject extends ParentPageObject {
     await searchInput.setValue(searchValue)
   }
 
-  async selectSearchListing(order, expectedResult){
-    const results = await $(`div.css-7ew2lb:nth-child(${order})`).$('a').$('div:nth-child(2)').$('p:nth-child(1)')
+  async selectSearchListing(item, expectedResult){
+    const results = await $(`div.css-7ew2lb:nth-child(${item})`).$('a').$('div:nth-child(2)').$('p:nth-child(1)')
     await browser.waitUntil(async () => {
       return (await results.getText())
     })
